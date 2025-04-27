@@ -5,21 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GRA2D"
         mc:Ignorable="d"
-         WindowState="Maximized" WindowStyle="None"
+         WindowState="Maximized" WindowStyle="None"   
         Title="Menu_Window" Height="1080"  Width="1920">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="Round_Corners">
-            <Setter Property="Margin" Value="70"></Setter>
+        <Style TargetType="Button" x:Key="Button"> <!-- zdefiniowanie stylów dla przycisku -->
+            <Setter Property="Margin" Value="70"></Setter> 
             <Setter Property="Width" Value="400"></Setter>
             <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="Background" Value="DodgerBlue"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+                    <ControlTemplate TargetType="Button"> <!-- zdefiniowanie nowego szablonu dla przycisku-->
+                        <Border Background="{TemplateBinding Background}" 
                                 CornerRadius="30"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
+                            <!-- wartosci sa pobierane  z właściwości przycisku-->
                             <ContentPresenter 
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
@@ -28,20 +33,19 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
         </Style>
     </Window.Resources>
     
-    <Grid>
+    <Grid> 
         <Grid.Background>
             <ImageBrush ImageSource="assets/MainWindow/background.png"></ImageBrush>
         </Grid.Background>
         <Border Background="LightSkyBlue" CornerRadius="100" Padding="20"
                 Width="600" Height="800" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Style="{StaticResource Round_Corners }" Content="Start"  Foreground="White" FontWeight="Bold" BorderThickness="0" FontSize="30" ></Button>
-                <Button Style="{StaticResource Round_Corners }" Content="Ustawienia" Foreground="White" FontWeight="Bold" BorderThickness="0" FontSize="30" ></Button>
-                <Button Style="{StaticResource Round_Corners }" Content="Wyjdź"  Foreground="White" FontWeight="Bold" BorderThickness="0" FontSize="30" ></Button>
+                <Button Style="{StaticResource Button }" Content="Start" Name="Start" Click="Start_Click"></Button>
+                <Button Style="{StaticResource Button }" Content="Ustawienia"></Button>
+                <Button Style="{StaticResource Button }" Content="Wyjdź" Name="Wyjdź" Click="Wyjdź_Click"></Button>
             </StackPanel>
         </Border>
     </Grid>

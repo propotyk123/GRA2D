@@ -18,7 +18,19 @@ namespace GRA2D
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+        }
+
+        private void Wyjdź_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(); //Zamyka cała aplikację
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow(); // tworzymy nowe okno jako obiekt
+            gameWindow.Show(); // pokazujemy nowe okno
+            this.Close(); // zamykamy aktualne okno
         }
     }
 }

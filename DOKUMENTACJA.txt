@@ -1,0 +1,7 @@
+26.04.2025
+Cel dnia:
+Stworzenie projektu i zaprojektowanie menu głównego.
+Stworzono:
+- Utworzenie projektu o nazwie 'GRA2D';
+- Stworzenie i wykonanie projektu menu głównego;
+- Zrobienie maksymalizacji okna aplikacji oraz usuniecie ramki okna;
