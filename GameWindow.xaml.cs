@@ -26,7 +26,7 @@ namespace GRA2D
 
         private void Powrot_Menu_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(); // tworzymy nowe okno jako obiekt
+            MainWindow mainWindow = new MainWindow(); // tworzymy nowe okno 
             mainWindow.Show(); // pokazujemy nowe okno
             this.Close(); // zamykamy aktualne okno
         }

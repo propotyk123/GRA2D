@@ -21,16 +21,59 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Button" x:Key="Button_Sklep">
+            <!-- zdefiniowanie stylów dla przycisku -->
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="DodgerBlue"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!-- zdefiniowanie nowego szablonu dla przycisku-->
+                        <Border Background="{TemplateBinding Background}" 
+                          CornerRadius="20"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}">
+                            <!-- wartosci sa pobierane  z właściwości przycisku-->
+                            <ContentPresenter 
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"></RowDefinition>
             <RowDefinition Height="85*" ></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Background="LightSkyBlue">
-            <StackPanel HorizontalAlignment="Left">
-                <Button Style="{StaticResource Button_Menu}" Name="Powrot_Menu" Foreground="white" Background="DodgerBlue" Width="150" Height="50" Content="Menu" FontSize="30" Click="Powrot_Menu_Click"></Button>
+            <StackPanel Orientation="Horizontal" >
+                <StackPanel HorizontalAlignment="Left">
+                    <Button Style="{StaticResource Button_Menu}" Name="Powrot_Menu" Foreground="white" Background="DodgerBlue" Width="150" Height="50" Content="Menu" FontSize="30" Click="Powrot_Menu_Click"></Button>
+                </StackPanel>
+                <StackPanel Margin="400,20,0,0"  Orientation="Horizontal">
+                    <Label Width="200" Margin="0,0,70,0" FontSize="30">level:</Label>
+                    <Grid>
+                        <ProgressBar Margin="0,0,30,0" Width="500"></ProgressBar>
+                        <TextBlock Foreground="black" Margin="30,5,0,0" FontSize="30" Text="0/100"></TextBlock>
+                    </Grid>
+                    <Button HorizontalAlignment="Right" Style="{StaticResource Button_Sklep}" Width="300" Margin="30,0,30,0" FontSize="30" Content="Sklep za punkty"></Button>
+                </StackPanel>
             </StackPanel>
+            <StackPanel Margin="550,15,0,0" Orientation="Horizontal">
+                <Label Width="275" Content="pieniądze:" FontSize="30"></Label>
+                <Button Style="{StaticResource Button_Sklep}" Width="300" Margin="555,0,0,0" Content="Sklep" FontSize="30"></Button>
+            </StackPanel>
+            
         </StackPanel>
+
     </Grid>
 </Window>

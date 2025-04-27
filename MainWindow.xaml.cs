@@ -28,7 +28,7 @@ namespace GRA2D
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow(); // tworzymy nowe okno jako obiekt
+            GameWindow gameWindow = new GameWindow(); // tworzymy nowe okno 
             gameWindow.Show(); // pokazujemy nowe okno
             this.Close(); // zamykamy aktualne okno
         }

@@ -1,7 +1,18 @@
 26.04.2025
 Cel dnia:
-Stworzenie projektu i zaprojektowanie menu głównego.
+- Stworzenie projektu i zaprojektowanie menu głównego;
 Stworzono:
 - Utworzenie projektu o nazwie 'GRA2D';
 - Stworzenie i wykonanie projektu menu głównego;
 - Zrobienie maksymalizacji okna aplikacji oraz usuniecie ramki okna;
+27.04.2025
+Cel dnia:
+-Stworzenie nowego okna dla gry;
+-Zaprogramowanie funkcji dla przycisków w menu głównym;
+-Zrobienie wstępnego projektu gry;
+Stworzono:
+-Funkcję 'Wyjdź_Click' która powoduje wyłączenie się całej aplikacji;
+-Nowe okno o nazwie 'GameWindow';
+-Funkcję w MainWindow o nazwie Start_Click która otwiera GameWindow;
+-Funkcję w GameWindow o nazwie Powrot_Menu_Click która otwiera MainWindow;
+-Wstępny projekt UI w grze;
