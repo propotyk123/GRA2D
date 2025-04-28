@@ -28,3 +28,4 @@ Stworzono
 -Zmienne do przechowywania pieniędzy oraz levelu
 -Obrazek prezentujący gracza do którego przypisana obraz gracz.png
 -funkcja WczytajObrazTerenu która przypisuje do tablicy obrazyTerenu zdjęcia terenów
+-Funkcja wczytaj mape która wczytuje i wyswietla mape

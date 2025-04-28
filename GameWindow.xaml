@@ -73,7 +73,7 @@
                 <Button Style="{StaticResource Button_Sklep}" Width="300" Margin="555,0,0,0" Content="Sklep" FontSize="30"></Button>
             </StackPanel>
         </StackPanel>
-        <Grid Grid.Row="1" Name="SiatkaMapy">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Name="SiatkaMapy" Background="LightGray">
             
         </Grid>
     </Grid>

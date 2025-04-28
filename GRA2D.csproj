@@ -9,12 +9,40 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\GameWindow\Gracz\gracz.png" />
     <None Remove="assets\GameWindow\Mapa\mapa.txt" />
+    <None Remove="assets\GameWindow\Teren\diament.png" />
+    <None Remove="assets\GameWindow\Teren\emerald.png" />
+    <None Remove="assets\GameWindow\Teren\Kamien.png" />
+    <None Remove="assets\GameWindow\Teren\wegiel.png" />
+    <None Remove="assets\GameWindow\Teren\zelazo.png" />
+    <None Remove="assets\GameWindow\Teren\zloto.png" />
     <None Remove="assets\MainWindow\background.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\GameWindow\Gracz\gracz.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\GameWindow\Mapa\mapa.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\diament.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\emerald.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\Kamien.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\wegiel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\zelazo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\GameWindow\Teren\zloto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\MainWindow\background.png">

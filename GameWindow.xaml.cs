@@ -48,8 +48,8 @@ namespace GRA2D
         {
             InitializeComponent();
             WczytajObrazyTerenu();
-            //string sciezka = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "assets", "GameWindow", "Mapa", "mapa.txt");
-            WczytajMape("mapa.txt");
+            
+            
 
             // Inicjalizacja obrazka gracza
             ObrazGracza = new Image
@@ -59,6 +59,7 @@ namespace GRA2D
             };
             BitmapImage bmpGracza = new BitmapImage(new Uri("assets/GameWindow/Gracz/gracz.png", UriKind.Relative));
             ObrazGracza.Source = bmpGracza;
+            WczytajMape("mapa.txt");
         }
 
         private void Powrot_Menu_Click(object sender, RoutedEventArgs e)
@@ -69,7 +70,7 @@ namespace GRA2D
         }
         private void WczytajObrazyTerenu()
         {
-            obrazyTerenu[KAMIEN] = new BitmapImage(new Uri("assets/GameWindow/Teren/kamien.png", UriKind.Relative));
+            obrazyTerenu[KAMIEN] = new BitmapImage(new Uri("assets/GameWindow/Teren/Kamien.png", UriKind.Relative));
             obrazyTerenu[WEGIEL] = new BitmapImage(new Uri("assets/GameWindow/Teren/wegiel.png", UriKind.Relative));
             obrazyTerenu[ZELAZO] = new BitmapImage(new Uri("assets/GameWindow/Teren/zelazo.png", UriKind.Relative));
             obrazyTerenu[ZLOTO] = new BitmapImage(new Uri("assets/GameWindow/Teren/zloto.png", UriKind.Relative));
