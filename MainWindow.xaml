@@ -8,8 +8,9 @@
          WindowState="Maximized" WindowStyle="None"   
         Title="Menu_Window" Height="1080"  Width="1920">
     <Window.Resources>
-        <Style TargetType="Button" x:Key="Button"> <!-- zdefiniowanie stylów dla przycisku -->
-            <Setter Property="Margin" Value="70"></Setter> 
+        <Style TargetType="Button" x:Key="Button">
+            <!-- zdefiniowanie stylów dla przycisku -->
+            <Setter Property="Margin" Value="70"></Setter>
             <Setter Property="Width" Value="400"></Setter>
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
@@ -19,7 +20,8 @@
             <Setter Property="FontSize" Value="30"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button"> <!-- zdefiniowanie nowego szablonu dla przycisku-->
+                    <ControlTemplate TargetType="Button">
+                        <!-- zdefiniowanie nowego szablonu dla przycisku-->
                         <Border Background="{TemplateBinding Background}" 
                                 CornerRadius="30"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -35,7 +37,6 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
     <Grid> 
         <Grid.Background>
             <ImageBrush ImageSource="assets/MainWindow/background.png"></ImageBrush>

@@ -72,8 +72,9 @@
                 <Label Width="275" Content="pieniądze:" FontSize="30"></Label>
                 <Button Style="{StaticResource Button_Sklep}" Width="300" Margin="555,0,0,0" Content="Sklep" FontSize="30"></Button>
             </StackPanel>
-            
         </StackPanel>
-
+        <Grid Grid.Row="1" Name="SiatkaMapy">
+            
+        </Grid>
     </Grid>
 </Window>
