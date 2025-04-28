@@ -9,10 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\GameWindow\Mapa\mapa.txt" />
     <None Remove="assets\MainWindow\background.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\GameWindow\Mapa\mapa.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\MainWindow\background.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

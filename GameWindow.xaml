@@ -60,7 +60,7 @@
                     <Button Style="{StaticResource Button_Menu}" Name="Powrot_Menu" Foreground="white" Background="DodgerBlue" Width="150" Height="50" Content="Menu" FontSize="30" Click="Powrot_Menu_Click"></Button>
                 </StackPanel>
                 <StackPanel Margin="400,20,0,0"  Orientation="Horizontal">
-                    <Label Width="200" Margin="0,0,70,0" FontSize="30">level:</Label>
+                    <Label Width="200" Margin="0,0,70,0" FontSize="30" Name="EtykiataLevel">level:</Label>
                     <Grid>
                         <ProgressBar Margin="0,0,30,0" Width="500"></ProgressBar>
                         <TextBlock Foreground="black" Margin="30,5,0,0" FontSize="30" Text="0/100"></TextBlock>
@@ -69,7 +69,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="550,15,0,0" Orientation="Horizontal">
-                <Label Width="275" Content="pieniądze:" FontSize="30"></Label>
+                <Label Name="EtykietaPieniadzy" Width="275" Content="pieniądze:" FontSize="30"></Label>
                 <Button Style="{StaticResource Button_Sklep}" Width="300" Margin="555,0,0,0" Content="Sklep" FontSize="30"></Button>
             </StackPanel>
         </StackPanel>

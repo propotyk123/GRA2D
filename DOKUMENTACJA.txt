@@ -16,3 +16,15 @@ Stworzono:
 -Funkcję w MainWindow o nazwie Start_Click która otwiera GameWindow;
 -Funkcję w GameWindow o nazwie Powrot_Menu_Click która otwiera MainWindow;
 -Wstępny projekt UI w grze;
+28.04.2025
+Cel dnia:
+-Dodanie grafik dla terenu i postaci
+-Zaczęcie pisania programu do generowania mapy i zmiennych;
+Stworzono
+-Grafiki dla postaci i terenu
+-Zmienne stałe do  przechowywania rodzajów terenów;
+-Zmienna tablicowa do przechowywania mapy
+-Zmienne przechowywujące pozycje gracza
+-Zmienne do przechowywania pieniędzy oraz levelu
+-Obrazek prezentujący gracza do którego przypisana obraz gracz.png
+-funkcja WczytajObrazTerenu która przypisuje do tablicy obrazyTerenu zdjęcia terenów
