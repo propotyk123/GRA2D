@@ -209,17 +209,7 @@ namespace GRA2D
                 pozycjaGraczaY = nowyY;
                 AktualizujPozycjeGracza(); //aktualizujemy pozycje gracza
             }
-            //Obsluga kopania - naciskamy spacje
-            if(e.Key == Key.Space)
-            {
-                if (mapa[pozycjaGraczaY , pozycjaGraczaX] == WEGIEL) //jesli gracz stoi na weglu
-                {
-                    mapa[pozycjaGraczaY , pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
-                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
-                    iloscPieniedzy += 1; //dodajemy 1 do pieniedzy
-                    EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
-                }
-            }
+
             //Automatyczne resetowanie mapy TEST
                 bool reset = true; //zmienna ktora odpowiada czy trzeba resetowac mape czy nie
                 for(int i = 0 ; i < mapa.GetLength(0); i++)
@@ -238,7 +228,24 @@ namespace GRA2D
                     GenerujMape(IlesegmentowX, IlesegmentowY); //generuje mape o podanych wymiarach
                     WczytajMape("mapa.txt");
                 }
-            
+
+
+            //Obsluga kopania - naciskamy spacje
+            if (e.Key == Key.Space)
+            {
+                if (mapa[pozycjaGraczaY, pozycjaGraczaX] == WEGIEL) //jesli gracz stoi na weglu
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    DodajPieniadze(1); //dodajemy pieniadze
+                }
+            }
+
+        }
+        private void DodajPieniadze(int ilosc) //dodaje pieniadze
+        {
+            iloscPieniedzy += ilosc; //dodajemy pieniadze
+            EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
         }
     }
 }

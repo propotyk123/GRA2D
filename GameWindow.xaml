@@ -74,8 +74,14 @@
                 <Button Style="{StaticResource Button_Sklep}" Width="300" Margin="555,0,0,0" Content="Sklep" FontSize="30"></Button>
             </StackPanel>
         </StackPanel>
+        
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Name="SiatkaMapy" Background="LightGray">
             
         </Grid>
+        <StackPanel  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="assets\GameWindow\Menu\tlo_ulepszen.png"></ImageBrush>
+            </StackPanel.Background>
+        </StackPanel>
     </Grid>
 </Window>

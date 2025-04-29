@@ -29,3 +29,11 @@ Stworzono
 -Obrazek prezentujący gracza do którego przypisana obraz gracz.png
 -funkcja WczytajObrazTerenu która przypisuje do tablicy obrazyTerenu zdjęcia terenów
 -Funkcja wczytaj mape która wczytuje i wyswietla mape
+29.04.2025
+Cel dnia
+-Zrobienie poruszania się postaci , auto generowanie mapy i auto resetowanie mapy
+-Projekt ulepszeń
+- Stworzono funkcję generuj mape która tworzy plik tekstowy do ktorego pisze liczby od 1-2
+- Funkcję OknoGry_KeyDown która wykonuje operacje jeśli dany przycisk został wcisnięty oraz na bieżaco sprawdza czy trzeba zrestowac mape
+- Funkcję DodajPieniadze która dodaje pieniadze i je wyswietla. Funkcja przyjmuje argument ilosc
+- Wstepny projekt ulepszeń 
