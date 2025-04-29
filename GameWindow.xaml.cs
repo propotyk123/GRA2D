@@ -44,9 +44,14 @@ namespace GRA2D
         //Licznik pieniedzy i levelu
         public int iloscPieniedzy = 0;
         public int level = 0;
+        //Zmienne do obsługi Generowania mapy
+        private int IlesegmentowX = 5;
+        private int IlesegmentowY = 5;
+
         public GameWindow()
         {
             InitializeComponent();
+            GenerujMape(IlesegmentowX, IlesegmentowY); //generuje mape o podanych wymiarach
             WczytajObrazyTerenu();
             
             
@@ -150,9 +155,74 @@ namespace GRA2D
                 MessageBox.Show("Błąd wczytywania mapy: " + ex.Message); //jeżeli wystąpił błąd to wyświetlamy komunikat
             } //koniec catch
         }
-        private void AktualizujPozycjeGracza()
+        private void GenerujMape(int IlesegmentowX , int IlesegmentowY)
         {
-
+            Random rnd = new Random();
+            StreamWriter writer = new StreamWriter("mapa.txt"); //tworzy plik tekstowy
+            for (int i = 0; i < IlesegmentowX; i++)
+            {
+                for(int j = 0; j < IlesegmentowY; j++)
+                {
+                    int szansa = rnd.Next(100); //generuje wartosc od 0 do 99 
+                    if(szansa < 80) //jesli liczba jest mniejsza od 80 dodaje 1 czyli liczba 1 ma 80% szans na wylosowanie
+                    {
+                        writer.Write(1 + " ");
+                    }
+                    else if(szansa >= 80) //jesli liczba jest wieksza lub równa 80 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                    {
+                        writer.Write(2 + " ");
+                    }
+                }
+                writer.WriteLine(); //dodaje nową linię
+            }
+            writer.Close(); //zamyka plik
+        }
+        private void AktualizujPozycjeGracza() //Aktualizuje pozycję obrazka gracza w siatce
+        {
+            Grid.SetRow(ObrazGracza, pozycjaGraczaY); //ustawiamy wiersz
+            Grid.SetColumn(ObrazGracza, pozycjaGraczaX); //ustawiamy kolumnę
+        }
+        private void OknoGry_KeyDown(object sender, KeyEventArgs e)
+        {
+            //przypisujemy obecna pozycje gracza 
+            int nowyX = pozycjaGraczaX;
+            int nowyY = pozycjaGraczaY;
+            //Zmiana pozycji gracza w zależności od wciśniętego klawisza
+            if (e.Key == Key.W ||e.Key == Key.Up) //jesli wcisnięto strzałke w góre albo w
+            {
+                nowyY--; //zmniejszamy Y dzieki czemu postac przesuwa sie o 1 w gore
+            }
+            else if (e.Key == Key.S || e.Key == Key.Down) //jesli wcisnieto strzałke w dół albo s 
+            {
+                nowyY++; //zwiekszamy Y dzieki czemu postac przesuwa sie o 1 w dół
+            }
+            else if (e.Key == Key.A || e.Key == Key.Left) //jesli wcisnieto strzałke w lewo albo a
+            {
+                nowyX--; //zmniejszamy X dzieki czemu postac przesuwa sie o 1 w lewo
+            }
+            else if (e.Key == Key.D || e.Key == Key.Right) //jesli wcisnieto strzałke w prawo albo d
+            {
+                nowyX++; //zwiekszamy X dzieki czemu postac przesuwa sie o 1 w prawo
+            }
+            //Sprawdzamy czy nowa pozycja gracza jest w granicach mapy
+            if (nowyX >= 0 && nowyX < szerokoscMapy && nowyY >= 0 && nowyY < wysokoscMapy)
+            {
+                //przypisujemy nowa pozycje gracza
+                pozycjaGraczaX = nowyX;
+                pozycjaGraczaY = nowyY;
+                AktualizujPozycjeGracza(); //aktualizujemy pozycje gracza
+            }
+            //Obsluga kopania - naciskamy spacje
+            if(e.Key == Key.Space)
+            {
+                if (mapa[pozycjaGraczaY , pozycjaGraczaX] == WEGIEL) //jesli gracz stoi na weglu
+                {
+                    mapa[pozycjaGraczaY , pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    iloscPieniedzy += 1; //dodajemy 1 do pieniedzy
+                    EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
+                }
+            }
         }
     }
 }

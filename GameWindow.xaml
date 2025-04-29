@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GRA2D"
         mc:Ignorable="d"
-        WindowState="Maximized" WindowStyle="None"  
+        WindowState="Maximized" WindowStyle="None"
+        KeyDown="OknoGry_KeyDown"
         Title="GameWindow" Height="1080"  Width="1920">
     <Window.Resources>
         <Style TargetType="Button" x:Key="Button_Menu">
