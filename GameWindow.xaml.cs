@@ -62,8 +62,10 @@ namespace GRA2D
                 Width = RozmiarSegmentu,
                 Height = RozmiarSegmentu
             };
-            BitmapImage bmpGracza = new BitmapImage(new Uri("assets/GameWindow/Gracz/gracz.png", UriKind.Relative));
+            BitmapImage bmpGracza = new BitmapImage(new Uri("assets/GameWindow/Gracz/gracz.png", UriKind.Relative)); 
             ObrazGracza.Source = bmpGracza;
+
+
             WczytajMape("mapa.txt");
         }
 
@@ -73,7 +75,7 @@ namespace GRA2D
             mainWindow.Show(); // pokazujemy nowe okno
             this.Close(); // zamykamy aktualne okno
         }
-        private void WczytajObrazyTerenu()
+        private void WczytajObrazyTerenu() //przypisuje dane grafiki do tablicy
         {
             obrazyTerenu[KAMIEN] = new BitmapImage(new Uri("assets/GameWindow/Teren/Kamien.png", UriKind.Relative));
             obrazyTerenu[WEGIEL] = new BitmapImage(new Uri("assets/GameWindow/Teren/wegiel.png", UriKind.Relative));
@@ -144,11 +146,6 @@ namespace GRA2D
                 pozycjaGraczaX = 0;
                 pozycjaGraczaY = 0;
                 AktualizujPozycjeGracza();
-
-                iloscPieniedzy = 0;
-                level = 0;
-                EtykiataLevel.Content = "Level: " + level; //resetuje level
-                EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //resetuje pieniądze
             } //koniec try
             catch (Exception ex)
             {
@@ -223,6 +220,25 @@ namespace GRA2D
                     EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
                 }
             }
+            //Automatyczne resetowanie mapy TEST
+                bool reset = true; //zmienna ktora odpowiada czy trzeba resetowac mape czy nie
+                for(int i = 0 ; i < mapa.GetLength(0); i++)
+                {
+                    for(int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        if(mapa[i, j] != KAMIEN) //jesli mapa nie jest kamieniem to zmieniamy zmienna na false
+                        {
+                            reset = false; //zmieniamy zmienna na false
+                            break; //przerywamy petle
+                        }
+                    }
+                }
+                if(reset == true)
+                {
+                    GenerujMape(IlesegmentowX, IlesegmentowY); //generuje mape o podanych wymiarach
+                    WczytajMape("mapa.txt");
+                }
+            
         }
     }
 }
