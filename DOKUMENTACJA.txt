@@ -37,3 +37,9 @@ Cel dnia
 - Funkcję OknoGry_KeyDown która wykonuje operacje jeśli dany przycisk został wcisnięty oraz na bieżaco sprawdza czy trzeba zrestowac mape
 - Funkcję DodajPieniadze która dodaje pieniadze i je wyswietla. Funkcja przyjmuje argument ilosc
 - Wstepny projekt ulepszeń 
+30.04.2025
+Cel dnia
+-Stworzenie systemu levelowania i stworzenie projektu ulepszeń
+Stworzono
+-Funkcję odpowiedzialne za zamykania i otwieranie sklepu
+-funkcję dodajxp która dodaje xp oraz robi akcję na progres bar

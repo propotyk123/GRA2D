@@ -52,6 +52,8 @@ namespace GRA2D
         private int potrzebnailoscXP = 100;
         //Zmiena do obslugi sklepu za level
         private int iloscPunktow_Level = 0;
+        private int MnoznikXP = 1;
+        private int MnoznikPieniedzy = 1;
 
         public GameWindow()
         {
@@ -250,14 +252,14 @@ namespace GRA2D
         }
         private void DodajPieniadze(int ilosc) //dodaje pieniadze
         {
-            iloscPieniedzy += ilosc; //dodajemy pieniadze
+            iloscPieniedzy += ilosc * MnoznikPieniedzy; //dodajemy pieniadze
             EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
         }
         private void DodajXP(int ilosc) //dodaje XP
         {
-            iloscXP += ilosc; //dodajemy XP
+            iloscXP += ilosc * MnoznikXP; //dodajemy XP
             XPText.Text = iloscXP + "/" + potrzebnailoscXP; //aktualizujemy etykiete XP
-            if (iloscXP == potrzebnailoscXP)
+            if (iloscXP >= potrzebnailoscXP)
             {
                 level++; //zwiekszamy level
                 EtykiataLevel.Content = "Level: " + level; //aktualizujemy etykiete levelu
@@ -265,10 +267,14 @@ namespace GRA2D
                 potrzebnailoscXP = potrzebnailoscXP * 2; //zwiekszamy potrzebna ilosc XP do nastepnego levelu
                 ProgressXP.Maximum = potrzebnailoscXP; //ustawiamy maksymalna wartosc paska XP
                 iloscPunktow_Level++; //dodajemy punkty za kazdy zdobyty poziom
-                IloscPunktow.Content = $"Masz {iloscPunktow_Level} punkty"; //aktualizuje etykiete z iloscia punktow w sklepie
+                AktualizujPunkty(); //aktualizujemy punkty
+                XPText.Text = iloscXP + "/" + potrzebnailoscXP; //aktualizujemy etykiete XP
             }
             ProgressXP.Value = iloscXP; //aktualizujemy pasek XP
-
+        }
+        private void AktualizujPunkty() //aktualizuje punkty
+        {
+            IloscPunktow.Content = $"Masz {iloscPunktow_Level} punkty"; //aktualizuje etykiete z iloscia punktow w sklepie
         }
         //Funkcję do obsługi otwierania i zamykania sklepów
         private void Sklep_punkty_Click(object sender, RoutedEventArgs e)
@@ -288,6 +294,30 @@ namespace GRA2D
         {
             SklepZaPieniadze.Visibility = Visibility.Collapsed; //zamyka sklep za pieniądze
         }
+
         //Funkcje do obsługi kupowania ulepszeń
+        private void MnożnikXPUlepszenie_Click(object sender, RoutedEventArgs e)
+        {
+            if (iloscPunktow_Level >= 1)
+            {
+                MnoznikXP++; //zwiekszamy mnoznik XP
+                iloscPunktow_Level--; //zmniejszamy ilosc punktow
+                Mnożnik_XP.Content = $"Mnożnik XP x{MnoznikXP + 1} - Zdobywaj {MnoznikXP + 1}x więcej xp";
+                AktualizujPunkty(); //aktualizujemy punkty
+            }
+           
+        }
+
+        private void MnożnikPieniedzyUlepszenie_Click(object sender, RoutedEventArgs e)
+        {
+            if (iloscPunktow_Level >= 1)
+            {
+                MnoznikPieniedzy++; //zwiekszamy mnoznik pieniedzy
+                iloscPunktow_Level--; //zmniejszamy ilosc punktow
+                Mnożnik_Pieniedzy.Content = $"Mnożnik Pieniędzy x{MnoznikPieniedzy + 1} - Zdobywaj {MnoznikPieniedzy + 1}x więcej pieniędzy";
+                AktualizujPunkty(); //aktualizujemy punkty
+            }
+        }
+       
     }
 }
