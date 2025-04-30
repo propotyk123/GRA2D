@@ -11,7 +11,6 @@
   <ItemGroup>
     <None Remove="assets\GameWindow\Gracz\gracz.png" />
     <None Remove="assets\GameWindow\Mapa\mapa.txt" />
-    <None Remove="assets\GameWindow\Menu\tlo_ulepszen.png" />
     <None Remove="assets\GameWindow\Teren\diament.png" />
     <None Remove="assets\GameWindow\Teren\emerald.png" />
     <None Remove="assets\GameWindow\Teren\Kamien.png" />
@@ -27,9 +26,6 @@
     </Resource>
     <Resource Include="assets\GameWindow\Mapa\mapa.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\GameWindow\Menu\tlo_ulepszen.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="assets\GameWindow\Teren\diament.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

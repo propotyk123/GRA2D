@@ -47,6 +47,9 @@ namespace GRA2D
         //Zmienne do obsługi Generowania mapy
         private int IlesegmentowX = 5;
         private int IlesegmentowY = 5;
+        //zmiene do obsługi XP levelu
+        private int iloscXP = 0;
+        private int potrzebnailoscXP = 0;
 
         public GameWindow()
         {
@@ -246,6 +249,39 @@ namespace GRA2D
         {
             iloscPieniedzy += ilosc; //dodajemy pieniadze
             EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
+        }
+        private void DodajXP(int ilosc) //dodaje XP
+        {
+            iloscXP += ilosc; //dodajemy XP
+            XPText.Text = iloscXP + "/" + potrzebnailoscXP; //aktualizujemy etykiete XP
+            if (iloscXP == potrzebnailoscXP)
+            {
+                level++; //zwiekszamy level
+                EtykiataLevel.Content = "Level: " + level; //aktualizujemy etykiete levelu
+            }
+
+
+        }
+
+        private void Sklep_punkty_Click(object sender, RoutedEventArgs e)
+        {
+            SklepZaPunkty.Visibility = Visibility.Visible; //otwiera sklep za punkty
+        }
+
+        private void ZamknijSklepLevel_Click(object sender, RoutedEventArgs e)
+        {
+            SklepZaPunkty.Visibility = Visibility.Collapsed; //zamyka sklep za punkty
+        }
+
+      
+
+        private void Sklep_pieniadze_Click(object sender, RoutedEventArgs e)
+        {
+            SklepZaPieniadze.Visibility = Visibility.Visible; //otwiera sklep za pieniądze
+        }
+        private void ZamknijSklepPieniadze_Click(object sender, RoutedEventArgs e)
+        {
+            SklepZaPieniadze.Visibility = Visibility.Collapsed; //zamyka sklep za pieniądze
         }
     }
 }
