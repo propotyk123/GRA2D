@@ -49,7 +49,9 @@ namespace GRA2D
         private int IlesegmentowY = 5;
         //zmiene do obsługi XP levelu
         private int iloscXP = 0;
-        private int potrzebnailoscXP = 0;
+        private int potrzebnailoscXP = 100;
+        //Zmiena do obslugi sklepu za level
+        private int iloscPunktow_Level = 0;
 
         public GameWindow()
         {
@@ -241,6 +243,7 @@ namespace GRA2D
                     mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
                     tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
                     DodajPieniadze(1); //dodajemy pieniadze
+                    DodajXP(10); //dodajemy XP
                 }
             }
 
@@ -258,11 +261,16 @@ namespace GRA2D
             {
                 level++; //zwiekszamy level
                 EtykiataLevel.Content = "Level: " + level; //aktualizujemy etykiete levelu
+                iloscXP = 0; //resetujemy XP
+                potrzebnailoscXP = potrzebnailoscXP * 2; //zwiekszamy potrzebna ilosc XP do nastepnego levelu
+                ProgressXP.Maximum = potrzebnailoscXP; //ustawiamy maksymalna wartosc paska XP
+                iloscPunktow_Level++; //dodajemy punkty za kazdy zdobyty poziom
+                IloscPunktow.Content = $"Masz {iloscPunktow_Level} punkty"; //aktualizuje etykiete z iloscia punktow w sklepie
             }
-
+            ProgressXP.Value = iloscXP; //aktualizujemy pasek XP
 
         }
-
+        //Funkcję do obsługi otwierania i zamykania sklepów
         private void Sklep_punkty_Click(object sender, RoutedEventArgs e)
         {
             SklepZaPunkty.Visibility = Visibility.Visible; //otwiera sklep za punkty
@@ -272,9 +280,6 @@ namespace GRA2D
         {
             SklepZaPunkty.Visibility = Visibility.Collapsed; //zamyka sklep za punkty
         }
-
-      
-
         private void Sklep_pieniadze_Click(object sender, RoutedEventArgs e)
         {
             SklepZaPieniadze.Visibility = Visibility.Visible; //otwiera sklep za pieniądze
@@ -283,5 +288,6 @@ namespace GRA2D
         {
             SklepZaPieniadze.Visibility = Visibility.Collapsed; //zamyka sklep za pieniądze
         }
+        //Funkcje do obsługi kupowania ulepszeń
     }
 }

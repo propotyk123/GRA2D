@@ -52,6 +52,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Label" x:Key="tekst">
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="tekst_upgrade">
+            <Setter Property="FontSize" Value="25"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="Button_Ulepsz">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="DodgerBlue"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="30,0,0,0"></Setter>
+        </Style>
     </Window.Resources>
     
     
@@ -68,7 +84,7 @@
                 <StackPanel Margin="400,20,0,0"  Orientation="Horizontal">
                     <Label Width="200" Margin="0,0,70,0" FontSize="30" Name="EtykiataLevel">level:</Label>
                     <Grid>
-                        <ProgressBar Name="ProgressXP" Margin="0,0,30,0" Width="500"></ProgressBar>
+                        <ProgressBar  Name="ProgressXP" Margin="0,0,30,0" Width="500"></ProgressBar>
                         <TextBlock Name="XPText" Foreground="black" Margin="30,5,0,0" FontSize="30" Text="0/100"></TextBlock>
                     </Grid>
                     <Button Name="Sklep_punkty" Click="Sklep_punkty_Click" HorizontalAlignment="Right" Style="{StaticResource Button_Sklep}" Width="300" Margin="30,0,30,0" FontSize="30" Content="Sklep za punkty"></Button>
@@ -83,9 +99,19 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Name="SiatkaMapy" Background="LightGray">
             
         </Grid>
-        <StackPanel Visibility="Collapsed" Name="SklepZaPunkty" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <StackPanel HorizontalAlignment="Left">
+        <StackPanel Visibility="Visible" Name="SklepZaPunkty" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Name="ZamknijSklepLevel" Click="ZamknijSklepLevel_Click" Style="{StaticResource Button_Menu}" Content="Zamknij" ></Button>
+                <Label Margin="40,0,0,0" Name="IloscPunktow" Content="Masz 0 punktów" Style="{StaticResource tekst}"></Label>
+            </StackPanel>
+            <StackPanel Margin="0,40,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="MnożnikXP" Content="Mnożnik XP x2 - Zdobywaj 2x więcej xp" Style="{StaticResource tekst_upgrade}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Koszt ulepszania: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Button Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel Visibility="Collapsed" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
