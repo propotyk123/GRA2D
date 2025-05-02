@@ -127,7 +127,7 @@
             </StackPanel>
             <StackPanel Margin="0,20,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <Label Name="Mnożnik_Pieniedzy" Content="Mnożnik Pieniędzy x2 - Zdobywaj 2x więcej XP" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Label Name="Mnożnik_Pieniedzy" Content="Mnożnik Pieniędzy x2 - Zdobywaj 2x więcej pieniedzy" Style="{StaticResource tekst_upgrade}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Koszt ulepszania: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
@@ -137,12 +137,18 @@
         </StackPanel>
         
         
-        <StackPanel Visibility="Visible" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <StackPanel Visibility="Collapsed" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
             <StackPanel HorizontalAlignment="Left">
                 <Button Name="ZamknijSklepPieniadze" Click="ZamknijSklepPieniadze_Click"  Style="{StaticResource Button_Menu}" Content="Zamknij" ></Button>
             </StackPanel>
             <StackPanel Margin="0,40,0,0">
-                
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="PoziomKilofa_label" Content="Ulepsz kilof - 1/5 - pozwala kopać lepsze minerały" Style="{StaticResource tekst_upgrade}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="PoziomKilofKoszt" Content="Koszt ulepszenia: 50" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Button  Name="UlepszKilof" Click="UlepszKilof_Click" Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

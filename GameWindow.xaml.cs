@@ -50,11 +50,13 @@ namespace GRA2D
         //zmiene do obsługi XP levelu
         private int iloscXP = 0;
         private int potrzebnailoscXP = 100;
-        //Zmiena do obslugi sklepu za level
+        //Zmiene do obslugi sklepu za level
         private int iloscPunktow_Level = 0;
         private int MnoznikXP = 1;
         private int MnoznikPieniedzy = 1;
-
+        //Zmienne do obslugi sklepu za pieniadze
+        private int PoziomKilofa = 1;
+        private int KosztKilofa = 50;
         public GameWindow()
         {
             InitializeComponent();
@@ -165,16 +167,104 @@ namespace GRA2D
             StreamWriter writer = new StreamWriter("mapa.txt"); //tworzy plik tekstowy
             for (int i = 0; i < IlesegmentowX; i++)
             {
-                for(int j = 0; j < IlesegmentowY; j++)
+                for (int j = 0; j < IlesegmentowY; j++)
                 {
                     int szansa = rnd.Next(100); //generuje wartosc od 0 do 99 
-                    if(szansa < 80) //jesli liczba jest mniejsza od 80 dodaje 1 czyli liczba 1 ma 80% szans na wylosowanie
+                    if (PoziomKilofa == 1)
                     {
-                        writer.Write(1 + " ");
+                        if (szansa < 80) //jesli liczba jest mniejsza od 80 dodaje 1 czyli liczba 1 ma 80% szans na wylosowanie
+                        {
+                            writer.Write(1 + " ");
+                        }
+                        else if (szansa >= 80) //jesli liczba jest wieksza lub równa 80 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(2 + " ");
+                        }
                     }
-                    else if(szansa >= 80) //jesli liczba jest wieksza lub równa 80 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                    if (PoziomKilofa == 2)
                     {
-                        writer.Write(2 + " ");
+                        if (szansa < 70) //jesli liczba jest mniejsza od 70 dodaje 1 czyli liczba 1 ma 70% szans na wylosowanie
+                        {
+                            writer.Write(1 + " ");
+                        }
+                        else if (szansa >= 70 && szansa < 90) //jesli liczba jest wieksza lub równa 70 i mniejsza od 90 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(2 + " ");
+                        }
+                        else if (szansa >= 90) //jesli liczba jest wieksza lub równa 90 dodaje 3 czyli liczba 3 ma 10% szans na wylosowanie
+                        {
+                            writer.Write(3 + " ");
+                        }
+
+                    }
+                    if (PoziomKilofa == 3)
+                    {
+                        if (szansa < 60) //jesli liczba jest mniejsza od 60 dodaje 1 czyli liczba 1 ma 60% szans na wylosowanie
+                        {
+                            writer.Write(1 + " ");
+                        }
+                        else if (szansa >= 60 && szansa < 80) //jesli liczba jest wieksza lub równa 60 i mniejsza od 80 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(2 + " ");
+                        }
+                        else if (szansa >= 80 && szansa < 95) //jesli liczba jest wieksza lub równa 80 i mniejsza od 95 dodaje 3 czyli liczba 3 ma 15% szans na wylosowanie
+                        {
+                            writer.Write(3 + " ");
+                        }
+                        else if (szansa >= 95) //jesli liczba jest wieksza lub równa 95 dodaje 4 czyli liczba 4 ma 5% szans na wylosowanie
+                        {
+                            writer.Write(4 + " ");
+                        }
+                    }
+                    if(PoziomKilofa == 4)
+                    {
+                        if (szansa < 50) //jesli liczba jest mniejsza od 50 dodaje 1 czyli liczba 1 ma 50% szans na wylosowanie
+                        {
+                            writer.Write(1 + " ");
+                        }
+                        else if (szansa >= 50 && szansa < 70) //jesli liczba jest wieksza lub równa 50 i mniejsza od 70 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(2 + " ");
+                        }
+                        else if (szansa >= 70 && szansa < 90) //jesli liczba jest wieksza lub równa 70 i mniejsza od 90 dodaje 3 czyli liczba 3 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(3 + " ");
+                        }
+                        else if (szansa >= 90 && szansa < 98) //jesli liczba jest wieksza lub równa 90 i mniejsza od 98 dodaje 4 czyli liczba 4 ma 8% szans na wylosowanie
+                        {
+                            writer.Write(4 + " ");
+                        }
+                        else if (szansa >= 98) //jesli liczba jest wieksza lub równa 98 dodaje 5 czyli liczba 5 ma 2% szans na wylosowanie
+                        {
+                            writer.Write(5 + " ");
+                        }
+                    }
+                    if(PoziomKilofa == 5)
+                    {
+                        if (szansa < 30) //jesli liczba jest mniejsza od 30 dodaje 1 czyli liczba 1 ma 30% szans na wylosowanie
+                        {
+                            writer.Write(1 + " ");
+                        }
+                        else if (szansa >= 30 && szansa < 50) //jesli liczba jest wieksza lub równa 30 i mniejsza od 50 dodaje 2 czyli liczba 2 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(2 + " ");
+                        }
+                        else if (szansa >= 50 && szansa < 70) //jesli liczba jest wieksza lub równa 50 i mniejsza od 70 dodaje 3 czyli liczba 3 ma 20% szans na wylosowanie
+                        {
+                            writer.Write(3 + " ");
+                        }
+                        else if (szansa >= 70 && szansa < 85) //jesli liczba jest wieksza lub równa 70 i mniejsza od 85 dodaje 4 czyli liczba 4 ma 15% szans na wylosowanie
+                        {
+                            writer.Write(4 + " ");
+                        }
+                        else if (szansa >= 85 && szansa < 95) //jesli liczba jest wieksza lub równa 85 i mniejsza od 95 dodaje 5 czyli liczba 5 ma 4% szans na wylosowanie
+                        {
+                            writer.Write(5 + " ");
+                        }
+                        else if (szansa >= 95) //jesli liczba jest wieksza lub równa 99 dodaje 6 czyli liczba 6 ma 1% szans na wylosowanie
+                        {
+                            writer.Write(6 + " ");
+                        }
                     }
                 }
                 writer.WriteLine(); //dodaje nową linię
@@ -217,7 +307,7 @@ namespace GRA2D
                 AktualizujPozycjeGracza(); //aktualizujemy pozycje gracza
             }
 
-            //Automatyczne resetowanie mapy TEST
+                //Automatyczne resetowanie mapy
                 bool reset = true; //zmienna ktora odpowiada czy trzeba resetowac mape czy nie
                 for(int i = 0 ; i < mapa.GetLength(0); i++)
                 {
@@ -247,6 +337,35 @@ namespace GRA2D
                     DodajPieniadze(1); //dodajemy pieniadze
                     DodajXP(10); //dodajemy XP
                 }
+                if (mapa[pozycjaGraczaY , pozycjaGraczaX] == ZELAZO) //jesli gracz stoi na zelazie
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    DodajPieniadze(4); //dodajemy pieniadze
+                    DodajXP(20); //dodajemy XP
+                }
+                if(mapa[pozycjaGraczaY, pozycjaGraczaX] == ZLOTO) //jesli gracz stoi na zloto
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    DodajPieniadze(8); //dodajemy pieniadze
+                    DodajXP(40); //dodajemy XP
+                }
+                if(mapa[pozycjaGraczaY, pozycjaGraczaX] == DIAMENT) //jesli gracz stoi na diament
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    DodajPieniadze(16); //dodajemy pieniadze
+                    DodajXP(80); //dodajemy XP
+                }
+                if (mapa[pozycjaGraczaY, pozycjaGraczaX] == EMERALD) //jesli gracz stoi na emerald
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                    DodajPieniadze(40); //dodajemy pieniadze
+                    DodajXP(160); //dodajemy XP
+                }
+
             }
 
         }
@@ -318,6 +437,24 @@ namespace GRA2D
                 AktualizujPunkty(); //aktualizujemy punkty
             }
         }
-       
+
+        private void UlepszKilof_Click(object sender, RoutedEventArgs e)
+        {
+            if(iloscPieniedzy >= KosztKilofa)
+            {
+                    iloscPieniedzy = iloscPieniedzy - KosztKilofa; //zmniejszamy ilosc pieniedzy
+                    PoziomKilofa++; //zwiekszamy poziom kilofa
+                    PoziomKilofa_label.Content = $"Ulepsz kilof - {PoziomKilofa}/5 - pozwala kopać lepsze minerały";
+                    KosztKilofa = KosztKilofa * 2; //zwiekszamy koszt kilofa
+                    PoziomKilofKoszt.Content = $"Koszt ulepszenia: {KosztKilofa}";
+                
+                if (PoziomKilofa == 5)
+                {
+                    PoziomKilofKoszt.Content = $"Osiagnięto maksymalny poziom kilofa";
+                    UlepszKilof.IsEnabled = false; //wyłącza przycisk ulepszania kilofak
+                }
+
+            }
+        }
     }
 }
