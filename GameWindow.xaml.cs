@@ -57,6 +57,8 @@ namespace GRA2D
         //Zmienne do obslugi sklepu za pieniadze
         private int PoziomKilofa = 1;
         private int KosztKilofa = 50;
+        private int PoziomWielkosciMapy = 0;
+        private int KosztWielkosciMapy = 200;
         public GameWindow()
         {
             InitializeComponent();
@@ -163,6 +165,8 @@ namespace GRA2D
         }
         private void GenerujMape(int IlesegmentowX , int IlesegmentowY)
         {
+            IlesegmentowX = IlesegmentowX + PoziomWielkosciMapy; //dodajemy poziom wielkosci mapy do ilosci segmentow X
+            IlesegmentowY = IlesegmentowY + PoziomWielkosciMapy; //dodajemy poziom wielkosci mapy do ilosci segmentow Y
             Random rnd = new Random();
             StreamWriter writer = new StreamWriter("mapa.txt"); //tworzy plik tekstowy
             for (int i = 0; i < IlesegmentowX; i++)
@@ -374,6 +378,10 @@ namespace GRA2D
             iloscPieniedzy += ilosc * MnoznikPieniedzy; //dodajemy pieniadze
             EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizujemy etykiete pieniedzy
         }
+        private void AktualizujPieniadze() //aktualizuje pieniadze
+        {
+            EtykietaPieniadzy.Content = "Pieniądze: " + iloscPieniedzy; //aktualizuje etykiete z iloscia pieniedzy
+        }
         private void DodajXP(int ilosc) //dodaje XP
         {
             iloscXP += ilosc * MnoznikXP; //dodajemy XP
@@ -443,17 +451,35 @@ namespace GRA2D
             if(iloscPieniedzy >= KosztKilofa)
             {
                     iloscPieniedzy = iloscPieniedzy - KosztKilofa; //zmniejszamy ilosc pieniedzy
+                    AktualizujPieniadze(); //aktualizujemy pieniadze
                     PoziomKilofa++; //zwiekszamy poziom kilofa
                     PoziomKilofa_label.Content = $"Ulepsz kilof - {PoziomKilofa}/5 - pozwala kopać lepsze minerały";
                     KosztKilofa = KosztKilofa * 2; //zwiekszamy koszt kilofa
                     PoziomKilofKoszt.Content = $"Koszt ulepszenia: {KosztKilofa}";
-                
+                    
                 if (PoziomKilofa == 5)
                 {
                     PoziomKilofKoszt.Content = $"Osiagnięto maksymalny poziom kilofa";
                     UlepszKilof.IsEnabled = false; //wyłącza przycisk ulepszania kilofak
                 }
 
+            }
+        }
+        private void UlepszWielkoscMapy_Click(object sender, RoutedEventArgs e)
+        {
+            if (iloscPieniedzy >= KosztWielkosciMapy)
+            {
+                iloscPieniedzy = iloscPieniedzy - KosztWielkosciMapy; //zmniejszamy ilosc pieniedzy
+                AktualizujPieniadze(); //aktualizujemy pieniadze
+                PoziomWielkosciMapy++; //zwiekszamy poziom wielkosci mapy
+                WielkoscMapy_Label.Content = $"Ulepsz wielkość mapy - {PoziomWielkosciMapy}/5";
+                KosztWielkosciMapy = KosztWielkosciMapy * 2; //zwiekszamy koszt wielkosci mapy
+                PoziomMapyKoszt.Content = $"Koszt ulepszenia: {KosztWielkosciMapy}";
+            }
+            if(PoziomWielkosciMapy == 5)
+            {
+                PoziomMapyKoszt.Content = $"Osiagnięto maksymalny poziom mapy";
+                UlepszWielkoscMapy.IsEnabled = false; //wyłącza przycisk ulepszania wielkosci mapy
             }
         }
     }

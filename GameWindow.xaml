@@ -80,9 +80,10 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
-    
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="assets\GameWindow\background.png"></ImageBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"></RowDefinition>
             <RowDefinition Height="85*" ></RowDefinition>
@@ -148,6 +149,15 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Name="PoziomKilofKoszt" Content="Koszt ulepszenia: 50" Style="{StaticResource tekst_upgrade}"></Label>
                     <Button  Name="UlepszKilof" Click="UlepszKilof_Click" Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="WielkoscMapy_Label" Content="Ulepsz Wielkosc Mapy - 0/5" Style="{StaticResource tekst_upgrade}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="PoziomMapyKoszt" Content="Koszt ulepszenia: 200" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Button  Name="UlepszWielkoscMapy" Click="UlepszWielkoscMapy_Click"  Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

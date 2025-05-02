@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\GameWindow\background.png" />
     <None Remove="assets\GameWindow\Gracz\gracz.png" />
     <None Remove="assets\GameWindow\Mapa\mapa.txt" />
     <None Remove="assets\GameWindow\Teren\diament.png" />
@@ -21,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="assets\GameWindow\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="assets\GameWindow\Gracz\gracz.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
