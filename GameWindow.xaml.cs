@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GRA2D
 {
@@ -49,7 +51,7 @@ namespace GRA2D
         private int IlesegmentowY = 5;
         //zmiene do obsługi XP levelu
         private int iloscXP = 0;
-        private int potrzebnailoscXP = 100;
+        private double potrzebnailoscXP = 100;
         //Zmiene do obslugi sklepu za level
         private int iloscPunktow_Level = 0;
         private int MnoznikXP = 1;
@@ -59,6 +61,13 @@ namespace GRA2D
         private int KosztKilofa = 50;
         private int PoziomWielkosciMapy = 0;
         private int KosztWielkosciMapy = 200;
+        //Zmienne do sklepu za pieniadze co sekunde
+        private int CzasPieniadzeLevel1 = 0;
+        private double CzasPieniadzeKoszt1 = 20;
+        private int CzasPieniadzeLevel2 = 0;
+        private double CzasPieniadzeKoszt2 = 400;
+        //Zmienna do czasu
+        private DispatcherTimer czas; //timer do odliczania czasu
         public GameWindow()
         {
             InitializeComponent();
@@ -78,8 +87,23 @@ namespace GRA2D
 
 
             WczytajMape("mapa.txt");
-        }
 
+            //Inicjalizacja timera
+            czas = new DispatcherTimer(); //tworzy obiekt
+            czas.Interval = TimeSpan.FromSeconds(1); // Ustawia czas co jaki czas wywoła sie zdarzenie Tick
+            czas.Tick += DodajCoSekunde; //Zdarzenie wywoływane gdy mija czas okreslony w Interval
+            czas.Start(); //Wlaczenie timera od tego czasu zaczyna pracowac i wywoła zdarzenie Tick co sekunde
+        }
+        private void DodajCoSekunde(object sender, EventArgs e) //Dodaje pieniadze i XP co sekunde
+        {
+            int IleDodac = CzasPieniadzeLevel1;
+            DodajPieniadze(IleDodac); //dodaje pieniadze co sekunde
+            DodajXP(IleDodac); //dodaje XP co sekunde
+            AktualizujPieniadze(); //aktualizuje pieniadze
+            AktualizujPunkty(); //aktualizuje punkty
+            StatystykaSekundaPieniadze.Content = $"Zdobywasz co sekundę {IleDodac * MnoznikPieniedzy} pieniądze"; //aktualizuje etykiete z iloscia pieniedzy co sekunde
+            StatystykaSekundaXP.Content = $"Zdobywasz co sekundę {IleDodac * MnoznikXP} XP";
+        }
         private void Powrot_Menu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow(); // tworzymy nowe okno 
@@ -391,7 +415,8 @@ namespace GRA2D
                 level++; //zwiekszamy level
                 EtykiataLevel.Content = "Level: " + level; //aktualizujemy etykiete levelu
                 iloscXP = 0; //resetujemy XP
-                potrzebnailoscXP = potrzebnailoscXP * 2; //zwiekszamy potrzebna ilosc XP do nastepnego levelu
+                potrzebnailoscXP = potrzebnailoscXP * 1.5; //zwiekszamy potrzebna ilosc XP do nastepnego levelu
+                potrzebnailoscXP = Math.Ceiling(potrzebnailoscXP/100) * 100; //zaokraglamy do setek w gore
                 ProgressXP.Maximum = potrzebnailoscXP; //ustawiamy maksymalna wartosc paska XP
                 iloscPunktow_Level++; //dodajemy punkty za kazdy zdobyty poziom
                 AktualizujPunkty(); //aktualizujemy punkty
@@ -480,6 +505,31 @@ namespace GRA2D
             {
                 PoziomMapyKoszt.Content = $"Osiagnięto maksymalny poziom mapy";
                 UlepszWielkoscMapy.IsEnabled = false; //wyłącza przycisk ulepszania wielkosci mapy
+            }
+        }
+
+        private void UlepszCzas1_Click(object sender, RoutedEventArgs e)
+        {
+            if(iloscPieniedzy >= CzasPieniadzeKoszt1)
+            {
+                iloscPieniedzy = iloscPieniedzy - (int)CzasPieniadzeKoszt1; //zmniejszamy ilosc pieniedzy
+                AktualizujPieniadze(); //aktualizujemy pieniadze
+                CzasPieniadzeLevel1++; //zwiekszamy poziom  zdobywanych pieniedzy co sekunde
+                CzasPieniadzeKoszt1 = CzasPieniadzeKoszt1 * 1.5; //zwiekszamy koszt ulepszenia
+                CzasPieniadzeKoszt1 = Math.Ceiling(CzasPieniadzeKoszt1 / 10) * 10; //zaokraglamy do dziesiatek w gore
+                PoziomKoszt1.Content = $"Koszt Ulepszenia: {CzasPieniadzeKoszt1}";
+            }
+        }
+
+        private void UlepszCzas2_Click(object sender, RoutedEventArgs e)
+        {
+            if (iloscPieniedzy >= CzasPieniadzeKoszt2)
+            {
+                iloscPieniedzy = iloscPieniedzy - (int)CzasPieniadzeKoszt2; //zmniejszamy ilosc pieniedzy
+                AktualizujPieniadze(); //aktualizujemy pieniadze
+                CzasPieniadzeLevel2++; //zwiekszamy poziom  zdobywanych pieniedzy co sekunde
+                CzasPieniadzeKoszt2 = CzasPieniadzeKoszt2 * 2; //zwiekszamy koszt ulepszenia
+                PoziomKoszt2.Content = $"Koszt Ulepszenia: {CzasPieniadzeKoszt2}";
             }
         }
     }

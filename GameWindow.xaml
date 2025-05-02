@@ -138,10 +138,17 @@
         </StackPanel>
         
         
-        <StackPanel Visibility="Collapsed" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <StackPanel HorizontalAlignment="Left">
-                <Button Name="ZamknijSklepPieniadze" Click="ZamknijSklepPieniadze_Click"  Style="{StaticResource Button_Menu}" Content="Zamknij" ></Button>
+        <StackPanel Visibility="Visible" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Left">
+                    <Button Name="ZamknijSklepPieniadze" Click="ZamknijSklepPieniadze_Click"  Style="{StaticResource Button_Menu}" Content="Zamknij" ></Button>
+                </StackPanel>
+                <StackPanel Margin="50,5,0,0">
+                    <Label FontSize="15" Name="StatystykaSekundaPieniadze" Style="{StaticResource tekst_upgrade}">Zdobywasz co sekundę 0 pieniądze</Label>
+                    <Label FontSize="15" Name="StatystykaSekundaXP" Style="{StaticResource tekst_upgrade}">Zdobywasz co sekundę 0 XP</Label>
+                </StackPanel>
             </StackPanel>
+            
             <StackPanel Margin="0,40,0,0">
                 <StackPanel Orientation="Horizontal">
                     <Label Name="PoziomKilofa_label" Content="Ulepsz kilof - 1/5 - pozwala kopać lepsze minerały" Style="{StaticResource tekst_upgrade}"></Label>
@@ -158,6 +165,24 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Name="PoziomMapyKoszt" Content="Koszt ulepszenia: 200" Style="{StaticResource tekst_upgrade}"></Label>
                     <Button  Name="UlepszWielkoscMapy" Click="UlepszWielkoscMapy_Click"  Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="Czas_label1" Content="Zdobywaj 1 xp i pieniadź co sekunde" Style="{StaticResource tekst_upgrade}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="PoziomKoszt1" Content="Koszt Ulepszenia: 20" Style="{StaticResource tekst_upgrade}"> </Label>
+                    <Button Name="UlepszCzas1" Click="UlepszCzas1_Click" Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button> 
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="Czas_label2" Content="Zdobywaj 10 xp i pieniadź co sekunde" Style="{StaticResource tekst_upgrade}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="PoziomKoszt2" Content="Koszt Ulepszenia: 400" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Button Name="UlepszCzas2" Click="UlepszCzas2_Click" Style="{StaticResource Button_Ulepsz}" Content="KUP"></Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
