@@ -68,6 +68,11 @@ namespace GRA2D
         private double CzasPieniadzeKoszt2 = 400;
         //Zmienna do czasu
         private DispatcherTimer czas; //timer do odliczania czasu
+        //Zmienne do ulepszenia autoKopania
+        private int KosztAutoKopania = 5;
+        private bool CzyKupioneAutoKopanie = false; //zmienna do sprawdzania czy auto kopanie jest kupione
+        //zmienne do Kopacza który automatycznie kopie
+        private bool CzyPrzerwacKopanie = false; //zmienna do sprawdzania czy kopacz ma przerwać kopanie kiedy wykopie juz surowiec
         public GameWindow()
         {
             InitializeComponent();
@@ -93,6 +98,18 @@ namespace GRA2D
             czas.Interval = TimeSpan.FromSeconds(1); // Ustawia czas co jaki czas wywoła sie zdarzenie Tick
             czas.Tick += DodajCoSekunde; //Zdarzenie wywoływane gdy mija czas okreslony w Interval
             czas.Start(); //Wlaczenie timera od tego czasu zaczyna pracowac i wywoła zdarzenie Tick co sekunde
+
+            //Inicjalizacja timera dla autoKopania
+            DispatcherTimer autoKopanie = new DispatcherTimer(); //tworzy obiekt
+            autoKopanie.Interval = TimeSpan.FromSeconds(2); // Ustawia czas co jaki czas wywoła sie zdarzenie Tick
+            autoKopanie.Tick += AutoKopanie; //Zdarzenie wywoływane gdy mija czas okreslony w Interval
+            autoKopanie.Start(); //Wlaczenie timera od tego czasu zaczyna pracowac i wywoła zdarzenie Tick 
+
+            //Inicjalizacja timera dla resetu mapy
+            DispatcherTimer resetMapyTimer = new DispatcherTimer(); //tworzy obiekt
+            resetMapyTimer.Interval = TimeSpan.FromSeconds(1); // Ustawia czas co jaki czas wywoła sie zdarzenie Tick
+            resetMapyTimer.Tick += ResetMapy; //Zdarzenie wywoływane gdy mija czas okreslony w Interval 
+            resetMapyTimer.Start(); //Wlaczenie timera od tego czasu zaczyna pracowac i wywoła zdarzenie Tick co sekunde
         }
         private void DodajCoSekunde(object sender, EventArgs e) //Dodaje pieniadze i XP co sekunde
         {
@@ -334,27 +351,6 @@ namespace GRA2D
                 pozycjaGraczaY = nowyY;
                 AktualizujPozycjeGracza(); //aktualizujemy pozycje gracza
             }
-
-                //Automatyczne resetowanie mapy
-                bool reset = true; //zmienna ktora odpowiada czy trzeba resetowac mape czy nie
-                for(int i = 0 ; i < mapa.GetLength(0); i++)
-                {
-                    for(int j = 0; j < mapa.GetLength(1); j++)
-                    {
-                        if(mapa[i, j] != KAMIEN) //jesli mapa nie jest kamieniem to zmieniamy zmienna na false
-                        {
-                            reset = false; //zmieniamy zmienna na false
-                            break; //przerywamy petle
-                        }
-                    }
-                }
-                if(reset == true)
-                {
-                    GenerujMape(IlesegmentowX, IlesegmentowY); //generuje mape o podanych wymiarach
-                    WczytajMape("mapa.txt");
-                }
-
-
             //Obsluga kopania - naciskamy spacje
             if (e.Key == Key.Space)
             {
@@ -530,6 +526,100 @@ namespace GRA2D
                 CzasPieniadzeLevel2++; //zwiekszamy poziom  zdobywanych pieniedzy co sekunde
                 CzasPieniadzeKoszt2 = CzasPieniadzeKoszt2 * 2; //zwiekszamy koszt ulepszenia
                 PoziomKoszt2.Content = $"Koszt Ulepszenia: {CzasPieniadzeKoszt2}";
+            }
+        }
+
+        private void AutoKopanieUlepszenie_Click(object sender, RoutedEventArgs e)
+        {
+            if(iloscPunktow_Level >= KosztAutoKopania)
+            {
+                iloscPunktow_Level -= KosztAutoKopania; //zmniejszamy ilosc punktow
+                AutoKopanieLabel.Content = "Kupiono";
+                AktualizujPunkty(); //aktualizujemy punkty
+                CzyKupioneAutoKopanie = true; //zmieniamy zmienna na true
+            }
+        }
+        private void AutoKopanie(object sender, EventArgs e)
+        {
+            CzyPrzerwacKopanie = false;
+            if (CzyKupioneAutoKopanie) //Sprawdza czy mamy kupione ulepszenie
+            {
+                for(int i = 0;i < mapa.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        if(mapa[i, j] == WEGIEL) //jesli Kopacz stoi na weglu
+                        {
+                            mapa[i, j] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                            tablicaTerenu[i, j].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                            DodajPieniadze(1); //dodajemy pieniadze
+                            DodajXP(10); //dodajemy XP
+                            CzyPrzerwacKopanie = true;
+                            break; //przerywamy petle
+                        }
+                        if(mapa[i, j] == ZELAZO) //jesli Kopacz stoi na zelazie
+                        {
+                            mapa[i, j] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                            tablicaTerenu[i, j].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                            DodajPieniadze(4); //dodajemy pieniadze
+                            DodajXP(20); //dodajemy XP
+                            CzyPrzerwacKopanie = true;
+                            break; //przerywamy petle
+                        }
+                        if(mapa[i, j] == ZLOTO) //jesli Kopacz stoi na zloto
+                        {
+                            mapa[i, j] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                            tablicaTerenu[i, j].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                            DodajPieniadze(8); //dodajemy pieniadze
+                            DodajXP(40); //dodajemy XP
+                            CzyPrzerwacKopanie = true;
+                            break; //przerywamy petle
+                        }
+                        if (mapa[i, j] == DIAMENT) //jesli Kopacz stoi na diament
+                        {
+                            mapa[i, j] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                            tablicaTerenu[i, j].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                            DodajPieniadze(16); //dodajemy pieniadze
+                            DodajXP(80); //dodajemy XP
+                            CzyPrzerwacKopanie = true;
+                            break; //przerywamy petle
+                        }
+                        if (mapa[i, j] == EMERALD) //jesli Kopacz stoi na emerald
+                        {
+                            mapa[i, j] = KAMIEN; //po wykopaniu zmieniamy rodzaj terenu na kamien
+                            tablicaTerenu[i, j].Source = obrazyTerenu[KAMIEN]; //zmieniamy obrazek terenu na kamien
+                            DodajPieniadze(40); //dodajemy pieniadze
+                            DodajXP(160); //dodajemy XP
+                            CzyPrzerwacKopanie = true;
+                            break; //przerywamy petle
+                        }
+                    }
+                    if (CzyPrzerwacKopanie == true) //jesli przerwano kopanie to przerywamy petle
+                    {
+                        break; //przerywamy petle
+                    }
+                }
+            }
+        }
+        private void ResetMapy(object sender, EventArgs e) //Sprawdza co sekunde czy trzeba zresetowac mape
+        {
+            //Automatyczne resetowanie mapy
+            bool reset = true; //zmienna ktora odpowiada czy trzeba resetowac mape czy nie
+            for (int i = 0; i < mapa.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapa.GetLength(1); j++)
+                {
+                    if (mapa[i, j] != KAMIEN) //jesli mapa nie jest kamieniem to zmieniamy zmienna na false
+                    {
+                        reset = false; //zmieniamy zmienna na false
+                        break; //przerywamy petle
+                    }
+                }
+            }
+            if (reset == true)
+            {
+                GenerujMape(IlesegmentowX, IlesegmentowY); //generuje mape o podanych wymiarach
+                WczytajMape("mapa.txt");
             }
         }
     }
