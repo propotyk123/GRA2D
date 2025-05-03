@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GRA2D"
         mc:Ignorable="d"
-         WindowStyle="None" WindowState="Maximized"
+        WindowState="Maximized" WindowStyle="None"
         KeyDown="OknoGry_KeyDown"
         Title="GameWindow" Height="1080"  Width="1920">
     <Window.Resources>
@@ -135,19 +135,10 @@
                     <Button Click="MnożnikPieniedzyUlepszenie_Click"  Name="MnożnikPieniedzyUlepszenie" Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="0,20,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <Label  Content="Kop surowce automatycznie co 2 sekundy" Style="{StaticResource tekst_upgrade}"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Koszt ulepszania: 5 punkt" Name="AutoKopanieLabel" Style="{StaticResource tekst_upgrade}"></Label>
-                    <Button Name="AutoKopanieUlepszenie" Click="AutoKopanieUlepszenie_Click" Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
-                </StackPanel>
-            </StackPanel>
         </StackPanel>
         
         
-        <StackPanel Visibility="Collapsed" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <StackPanel Visibility="Visible" Name="SklepZaPieniadze" Background="LightSkyBlue"  Margin="0,30,30,0" Grid.Row="1" Width="500" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal">
                 <StackPanel HorizontalAlignment="Left">
                     <Button Name="ZamknijSklepPieniadze" Click="ZamknijSklepPieniadze_Click"  Style="{StaticResource Button_Menu}" Content="Zamknij" ></Button>
