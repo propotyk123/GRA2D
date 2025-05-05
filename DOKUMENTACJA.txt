@@ -43,3 +43,12 @@ Cel dnia
 Stworzono
 -Funkcję odpowiedzialne za zamykania i otwieranie sklepu
 -funkcję dodajxp która dodaje xp oraz robi akcję na progres bar
+31.04.2025 - 04.05.2025
+Cele
+-Dodanie ulepszeń do gry za punkty i pieniądze
+Stworzono
+-Ulepszenie które pozwala zwiększyć rozmiar mapy
+-Ulepszenie które pozwala kopać lepsze rzeczy
+-Ulepszenia które dodają co sekundę x pieniędzy i xp
+-Ulepszenie które samo kopię surowce co 3 sekundy
+

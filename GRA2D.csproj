@@ -7,7 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="assets\GameWindow\background.png" />
     <None Remove="assets\GameWindow\Gracz\gracz.png" />

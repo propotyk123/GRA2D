@@ -122,7 +122,7 @@
                     <Label Name="Mnożnik_XP" Content="Mnożnik XP x2 - Zdobywaj 2x więcej xp" Style="{StaticResource tekst_upgrade}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Koszt ulepszania: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Label Content="Koszt ulepszenia: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
                     <Button Click="MnożnikXPUlepszenie_Click"  Name="MnożnikXPUlepszenie" Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
                 </StackPanel>
             </StackPanel>
@@ -131,7 +131,7 @@
                     <Label Name="Mnożnik_Pieniedzy" Content="Mnożnik Pieniędzy x2 - Zdobywaj 2x więcej pieniedzy" Style="{StaticResource tekst_upgrade}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Koszt ulepszania: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Label Content="Koszt ulepszenia: 1 punkt" Style="{StaticResource tekst_upgrade}"></Label>
                     <Button Click="MnożnikPieniedzyUlepszenie_Click"  Name="MnożnikPieniedzyUlepszenie" Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
                 </StackPanel>
             </StackPanel>
@@ -140,7 +140,7 @@
                     <Label  Content="Kop surowce automatycznie co 2 sekundy" Style="{StaticResource tekst_upgrade}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Koszt ulepszania: 5 punkt" Name="AutoKopanieLabel" Style="{StaticResource tekst_upgrade}"></Label>
+                    <Label Content="Koszt ulepszenia: 5 punkt" Name="AutoKopanieLabel" Style="{StaticResource tekst_upgrade}"></Label>
                     <Button Name="AutoKopanieUlepszenie" Click="AutoKopanieUlepszenie_Click" Style="{StaticResource Button_Ulepsz}" Content="Kup"></Button>
                 </StackPanel>
             </StackPanel>

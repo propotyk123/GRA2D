@@ -42,10 +42,9 @@
             <ImageBrush ImageSource="assets/MainWindow/background.png"></ImageBrush>
         </Grid.Background>
         <Border Background="LightSkyBlue" CornerRadius="100" Padding="20"
-                Width="600" Height="800" VerticalAlignment="Center" HorizontalAlignment="Center">
+                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Style="{StaticResource Button }" Content="Start" Name="Start" Click="Start_Click"></Button>
-                <Button Style="{StaticResource Button }" Content="Ustawienia"></Button>
                 <Button Style="{StaticResource Button }" Content="Wyjdź" Name="Wyjdź" Click="Wyjdź_Click"></Button>
             </StackPanel>
         </Border>
